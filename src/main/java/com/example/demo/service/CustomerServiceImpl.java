@@ -16,6 +16,8 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import static com.example.demo.repository.CustomerRepository.customerMap;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -48,7 +50,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Collection<CustomerDto> getCustomer() {
         logger.info("getCustomer.start");
-        Collection<CustomerDto> valueOfMap = customerRepository.customerMap.values();
+        Collection<CustomerDto> valueOfMap = customerMap.values();
         logger.info("getCustomer.end");
         return valueOfMap;
     }
@@ -57,7 +59,7 @@ public class CustomerServiceImpl implements CustomerService {
     public void addCustomer(CustomerDto customerDto) {
         logger.info("addCustomer.start");
         customerDto.setId(lastId);
-        customerRepository.customerMap.put(lastId, customerDto);
+        customerMap.put(lastId, customerDto);
         lastId++;
         logger.info("addCustomer.end");
     }
@@ -66,12 +68,11 @@ public class CustomerServiceImpl implements CustomerService {
     public void addCustomerInFiveSecond() {
         logger.info("addCustomerInFiveSecond.start");
         CustomerDto customerDto2 = new CustomerDto();
-
         String name = randomIdentifier();
         System.out.println(name);
         customerDto2.setName(name);
         customerDto2.setId(lastId);
-        customerRepository.customerMap.put(lastId, customerDto2);
+        customerMap.put(lastId, customerDto2);
         lastId++;
         logger.info("addCustomerInFiveSecond.end");
     }
@@ -80,14 +81,14 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void updateCustomer(int id, CustomerDto customerDto) {
         logger.info("updateCustomer.start");
-        customerRepository.customerMap.remove(id);
+        customerMap.remove(id);
         customerDto.setId(id);
-        customerRepository.customerMap.put(id, customerDto);
+        customerMap.put(id, customerDto);
         logger.info("updateCustomer.end");
     }
 
     @Override
     public void deleteCustomer(int id) {
-        customerRepository.customerMap.remove(id);
+        customerMap.remove(id);
     }
 }

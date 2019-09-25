@@ -15,8 +15,8 @@ import java.util.HashMap;
 @Setter
 @Repository
 public class CustomerRepository {
-    public static HashMap<Integer, CustomerDto> customerMap = new HashMap<>();
 
+    public static HashMap<Integer, CustomerDto> customerMap = new HashMap<>();
 
     private static final Logger logger = LoggerFactory.getLogger(CustomerRepository.class);
 
